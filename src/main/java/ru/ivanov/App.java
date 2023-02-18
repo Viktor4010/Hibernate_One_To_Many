@@ -20,9 +20,13 @@ public class App {
 
             session.beginTransaction();
 
-            Director director = session.get(Director.class, 7);
+            Movie movie = session.get(Movie.class, 10);
+            System.out.println(movie);
+            Director director = movie.getDirector();
             System.out.println(director);
 
+
+            session.getTransaction().commit();
 
         }
     }
