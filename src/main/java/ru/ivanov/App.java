@@ -20,10 +20,16 @@ public class App {
 
             session.beginTransaction();
 
-            Director director = session.get(Director.class, 7);
-            System.out.println(director);
+            Director lizaKazakova = new Director("Liza Kazakova", 22);
+            session.save(lizaKazakova);
+
+            Movie movie = session.get(Movie.class, 5);
+            movie.setDirector(lizaKazakova);
+
+            session.save(movie);
 
 
+            session.getTransaction().commit();
         }
     }
 }
