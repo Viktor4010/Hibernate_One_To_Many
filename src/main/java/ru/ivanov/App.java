@@ -6,6 +6,9 @@ import org.hibernate.cfg.Configuration;
 import ru.ivanov.models.Director;
 import ru.ivanov.models.Movie;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Hello world!
  */
@@ -20,10 +23,18 @@ public class App {
 
             session.beginTransaction();
 
-            Director director = session.get(Director.class, 7);
-            System.out.println(director);
+            Director viktorIvanov = new Director("Viktor Ivanov", 21);
+            session.save(viktorIvanov);
+
+            Movie movie = new Movie(viktorIvanov, "How to be a good programmer", 2030);
+            session.save(movie);
 
 
+            viktorIvanov.setMovies(new ArrayList<>(Collections.singletonList(movie)));
+
+
+
+            session.getTransaction().commit();
         }
     }
 }
